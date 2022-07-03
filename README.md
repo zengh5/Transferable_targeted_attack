@@ -1,7 +1,7 @@
 # Transferable_targeted_attack
 PyTorch code for our submitted paper:
 
-[**"Enhancing Targeted Transferability via supressing high-confidence labels"**]. H. Zeng, K. Yu, B. Chen, and A. Peng.
+**"Enhancing Targeted Transferability via suppressing high-confidence labels"**. H. Zeng, K. Yu, B. Chen, and A. Peng.
 
 ### Motiviation
 Let's say we attacked a 'tench' image to a 'otterhound', and succeed in the source model. When the attacked image is transferred to a target model, the most likely output is: 'otterhound' (great!), 'tench' (oops!), other fish-like labels (oops!), and dog-like labels (oops!). 1) the original label is likely to be 'restored' in the target model; 2) the adversarial perturbation may be explained as dog-like, rather than the exact 'otterhound' in the target model.  

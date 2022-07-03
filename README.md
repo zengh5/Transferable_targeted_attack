@@ -7,7 +7,7 @@ PyTorch code for our submitted paper:
 Let's say we attacked a 'tench' image to a 'otterhound', and succeed in the source model. When the attacked image is transferred to a target model, the most likely output is: 'otterhound' (great!), 'tench' (oops!), other fish-like labels (oops!), and dog-like labels (oops!). 1) the original label is likely to be 'restored' in the target model; 2) the adversarial perturbation may be explained as dog-like, rather than the exact 'otterhound' in the target model.  
 To this end, we propose a new Transferable Targeted attack as following:
 <p align="left">
-  <img src="https://github.com/zengh5/Transferable_targeted_attack/tree/main/Figures/Fig1_target_transfer.png" width='700'>
+  <img src="https://github.com/zengh5/Transferable_targeted_attack/tree/blob/Figures/Fig1_target_transfer.png" width='700'>
 </p>
 
 ### Dataset

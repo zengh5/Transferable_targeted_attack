@@ -18,8 +18,8 @@ We compare the proposed method with three simple transferable targeted attacks (
 All attacks are integrated with TI, MI, and DI, and run with 200 iterations to ensure convergence.
 L<sub>&infin;</sub>=16 is applied.
 
-#### ```eval_single.py```: Single-model transfer.
-#### ```eval_ensemble.py```: Ensemble transfer. 
+#### ```eval_single_TMDI.py```: Single-model transfer.
+#### ```eval_ensemble_TMDI.py```: Ensemble transfer. 
 
 Our codes are heavily borrowed from:
 https://github.com/ZhengyuZhao/Targeted-Transfer

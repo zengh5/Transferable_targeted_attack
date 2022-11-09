@@ -10,8 +10,6 @@ Let's say we attacked a 'tench' image to a 'otterhound', and succeed in the sour
 - High-confidence labels in the source model are likely to retain high confidence in the target model, no matter for original images (shown below) or attacked ones. This means the adversarial perturbation may be explained as dog-like, rather than the exact 'otterhound' in the target model.  
 <p align="center">
   <img src="https://github.com/zengh5/Transferable_targeted_attack/blob/main/Figures/highlow_conf.png" width='300'>
-</p>
-<p align="center">
   <img src="https://github.com/zengh5/Transferable_targeted_attack/blob/main/Figures/highlow_conf_AE.png" width='300'>
 </p>
 

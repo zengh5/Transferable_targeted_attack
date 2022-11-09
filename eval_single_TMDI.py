@@ -77,7 +77,6 @@ image_id_list, label_ori_list, label_tar_list = load_ground_truth('./dataset/ima
 
 # 3. Parameters
 batch_size = 20
-# batch_size = 1
 beta = 0.2
 beta2 = 0.5
 max_iterations = 200

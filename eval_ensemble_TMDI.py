@@ -73,6 +73,7 @@ torch.backends.cudnn.deterministic = True
 # from https://github.com/pytorch/examples/blob/master/imagenet/main.py
 norm = Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 trn = transforms.Compose([transforms.ToTensor(), ])
+# label_tar_list is a pseudo-random list of target labels, we follow this for reproducibility.
 image_id_list, label_ori_list, label_tar_list = load_ground_truth('./dataset/images.csv')
 
 # 3. Parameters
@@ -293,12 +294,12 @@ for k in range(0, num_batches):
         # A.3 Calculate the current logits
         logits = (model_1(norm(X_adv_DI1)) + model_2(norm(X_adv_DI2)) + model_3(norm(X_adv_DI3))) / 3  #ensemble
 
-        logitstvalue, logitstop = logits.data.topk(top_k + 2, dim=1)
+        logitstvalue, logitstop = logits.data.topk(top_k + 2, dim=1)  # collect the high-confident labels
         logit_tar = logits.gather(1, labels.unsqueeze(1)).squeeze(1)
         logit_ori = logits.gather(1, labels_true.unsqueeze(1)).squeeze(1)
 
-        # A.4 Calculate the grad according to the combined-logits (tar & ori) loss
-        logit_dists = (-1 * (logit_tar - beta * logit_ori))
+        # A.4 Calculate the grad according to the combined-logits (tar & ori) loss, Equation (7) of the paper
+        logit_dists = (-1 * (logit_tar - beta * logit_ori))  
         loss = logit_dists.sum()
         loss.backward()
         grad_c = delta.grad.clone()
@@ -328,14 +329,14 @@ for k in range(0, num_batches):
             logit_cur = logits.gather(1, y_high_conf_cur)
             # print(y_high_conf_cur)
             logit_dists = (1 * logit_cur).mean(dim=-1)
-            loss = logit_dists.sum()
+            loss = logit_dists.sum()   # Equation (8) of the paper
             loss.backward()
             grad2 = delta.grad.data.clone()
 
-            # Calculate the orthogonal component to grad_c
+            # Calculate the orthogonal component to grad_c, Equation (9) of the paper
             project_grad2 = projAtoB_batch(grad2, grad_c)
 
-            # combine the orthogonal component of grad2 with grad_c
+            # combine the orthogonal component of grad2 with grad_c, Equation (10) of the paper
             grad_c = grad_c + beta2 * project_grad2
 
         # A.7 Momentum and translation-invariant

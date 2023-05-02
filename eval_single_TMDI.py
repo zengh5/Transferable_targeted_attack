@@ -301,7 +301,7 @@ for k in range(0, num_batches):
         logit_ori = logits.gather(1, labels_true.unsqueeze(1)).squeeze(1)
 
         # A.4 Calculate the grad according to the combined-logits (tar & ori) loss
-        logit_dists = (-1 * (logit_tar - beta * logit_ori))
+        logit_dists = (-1 * (logit_tar - beta * logit_ori))   # Equation (7) of the paper
         loss = logit_dists.sum()
         loss.backward()
         grad_c = delta.grad.clone()
@@ -328,15 +328,15 @@ for k in range(0, num_batches):
             logit_cur = logits.gather(1, y_high_conf_cur)
             # print(y_high_conf_cur)
             logit_dists = (1 * logit_cur).mean(dim=-1)
-            loss = logit_dists.sum()
+            loss = logit_dists.sum()   # Equation (8) of the paper
             loss.backward()
             grad2 = delta.grad.data.clone()
 
-            # Calculate the orthogonal component to grad_c
-            project_grad2 = projAtoB_batch(grad2, grad_c)
+            # Calculate the orthogonal component to grad_c, Equation (9) of the paper
+            project_grad2 = projAtoB_batch(grad2, grad_c)    
 
-            # combine the orthogonal component of grad2 with grad_c
-            grad_c = grad_c + beta2 * project_grad2
+            # combine the orthogonal component of grad2 with grad_c, Equation (10) of the paper
+            grad_c = grad_c + beta2 * project_grad2   
         # A.7 Momentum and translation-invariant
         grad_c = F.conv2d(grad_c, gaussian_kernel, bias=None, stride=1, padding=(2, 2), groups=3)  # TI
         grad_a = grad_c + 1 * grad_pre  # MI

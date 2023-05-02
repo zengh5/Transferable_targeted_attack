@@ -111,7 +111,7 @@ def projAtoB(a, b):
     a_proj = torch.mm(temp1reshape, b.view(1, -1))
     a_proj = a_proj.view(a.shape)
 
-    a_orth = a - a_proj
+    a_orth = a - a_proj  # Only keep the orthogonal component (to vector b) of vector a
     corr = Cos_dis_sign(a_orth, b)
 
     return a_orth.unsqueeze(0)

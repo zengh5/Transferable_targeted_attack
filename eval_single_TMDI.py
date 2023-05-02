@@ -73,6 +73,7 @@ torch.backends.cudnn.deterministic = True
 # from https://github.com/pytorch/examples/blob/master/imagenet/main.py
 norm = Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 trn = transforms.Compose([transforms.ToTensor(), ])
+# label_tar_list is a pseudo-random list of target labels, we follow this for reproducibility.
 image_id_list, label_ori_list, label_tar_list = load_ground_truth('./dataset/images.csv')
 
 # 3. Parameters
@@ -296,7 +297,7 @@ for k in range(0, num_batches):
         # A.3 Calculate the current logits
         logits = model_2(X_adv_norm_DI)  # DI
 
-        logitstvalue, logitstop = logits.data.topk(top_k + 2, dim=1)
+        logitstvalue, logitstop = logits.data.topk(top_k + 2, dim=1)  # collect the high-confident labels
         logit_tar = logits.gather(1, labels.unsqueeze(1)).squeeze(1)
         logit_ori = logits.gather(1, labels_true.unsqueeze(1)).squeeze(1)
 

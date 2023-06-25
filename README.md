@@ -1,5 +1,5 @@
 # Transferable_targeted_attack
-PyTorch code for our submitted paper:
+PyTorch code for our accepted paper by 2023 ICIP:
 
 **"Enhancing Targeted Transferability via suppressing high-confidence labels"**. H. Zeng, T. Zhang, B. Chen, and A. Peng.
 

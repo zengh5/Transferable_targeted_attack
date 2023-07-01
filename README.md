@@ -30,7 +30,7 @@ L<sub>&infin;</sub>=16 is applied.
 #### ```eval_ensemble_TMDI.py```: Ensemble transfer. 
 
 ### More results
-We provide ablation study on N_h and T in the 'supp.pdf'.
+We provide ablation study on N_h and T, visual quality comparison, and attack ability comparison with a generative attack TTP, in the 'supp.pdf'.
 
 Our codes are heavily borrowed from:
 https://github.com/ZhengyuZhao/Targeted-Transfer

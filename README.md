@@ -18,6 +18,8 @@ To this end, we propose a new Transferable Targeted attack as following:
   <img src="https://github.com/zengh5/Transferable_targeted_attack/blob/main/Figures/Fig1_target_transfer.png" width='500'>
 </p>
 
+An independent similar finding is reported by [Zhang et al.](https://github.com/ChaoningZhang/Top-k-Transferable-Attack)
+
 ### Dataset
 The 1000 images are from the NIPS 2017 ImageNet-Compatible dataset. [official repository](https://github.com/cleverhans-lab/cleverhans/tree/master/cleverhans_v3.1.0/examples/nips17_adversarial_competition/dataset) or [Zhao's Github](https://github.com/ZhengyuZhao/Targeted-Tansfer/tree/main/dataset). 
 
